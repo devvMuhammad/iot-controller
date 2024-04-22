@@ -5,6 +5,9 @@
     <string name="inactive_devices">Inactive Devices</string>
     <string name="main_tab_layout_description">This is the tab to switch among the currently
     active, inactive and all devices available for your home!</string>
+    <string name="devices">Devices</string>
+    <string name="add">Add</string>
+    <string name="new_devices_addition_menu">Add New Device</string>
     <string name="dummyText1">ABC</string>
     <string name="dummyText2">DEF</string>
     <string name="dummyText3">GHI</string>
