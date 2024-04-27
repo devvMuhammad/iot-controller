@@ -7,8 +7,20 @@
     active, inactive and all devices available for your home!</string>
     <string name="devices">Devices</string>
     <string name="add">Add</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register">Register</string>
+    <string name="accountAlreadyCreated">Already have an account?</string>
+    <string name="usernameInput">Please enter your username</string>
+    <string name="emailInput">Please enter your email address</string>
+    <string name="passwordInput">Please enter your password</string>
+    <string name="reenterPasswordInput">Please re-enter your password</string>
+    <string name="signIn">Sign in</string>
+    <string name="email">Email Address</string>
     <string name="new_devices_addition_menu">Add New Device</string>
     <string name="dummyText1">ABC</string>
     <string name="dummyText2">DEF</string>
     <string name="dummyText3">GHI</string>
+    <string name="registrationMsg">Please register your account</string>
 </resources>

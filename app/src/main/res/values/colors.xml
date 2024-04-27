@@ -3,4 +3,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple1">#5A189A</color>
+    <color name="purple2">#5A189A</color>
+    <color name="purple3">#7B2CBF</color>
+    <color name="purpleLight1">#9D4EDD</color>
+    <color name="buttonDisabled">#36FFFFFF</color>
+    <color name="buttonEnabled">#FF9D4EDD</color>
+    <color name="blue">#1B75D6</color>
 </resources>

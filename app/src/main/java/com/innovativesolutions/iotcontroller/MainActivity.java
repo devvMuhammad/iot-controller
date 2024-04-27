@@ -1,5 +1,4 @@
 package com.innovativesolutions.iotcontroller;
-
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -15,7 +14,6 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-//1
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
