@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IoTController"
         tools:targetApi="31">
+        <activity android:name=".LightBulb"
+            android:theme="@style/actionBarStyle"
+            />
         <activity
             android:name=".RegistrationPage"
             android:exported="true">

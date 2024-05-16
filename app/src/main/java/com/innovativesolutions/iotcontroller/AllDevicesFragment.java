@@ -1,4 +1,5 @@
 package com.innovativesolutions.iotcontroller;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,8 @@ public class AllDevicesFragment extends Fragment {
         popupMenu.show();
     }
     private void addDevice(String deviceType){
+        Intent bulbIntent = new Intent(requireContext(), LightBulb.class);
+        startActivity(bulbIntent);
             updateAddButtonPosition();
     }
     private void updateAddButtonPosition(){
