@@ -1,5 +1,6 @@
 package com.innovativesolutions.iotcontroller;
 
+import android.bluetooth.BluetoothSocket;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,13 +16,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class LightBulb extends AppCompatActivity {
+import java.io.IOException;
+import java.io.OutputStream;
 
+public class LightBulb extends AppCompatActivity {
+        BluetoothSocket bluetoothSocket;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.light_bulb);
+        bluetoothSocket = MainActivity.socket;
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -32,10 +37,12 @@ public class LightBulb extends AppCompatActivity {
             if (isChecked) {
                 Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.light_bulb_12009589);
                 imgview.setImageDrawable(drawable);
+                sendDataToBluetooth("1");
             } else {
                 // Set to another drawable or null when the switch is not checked
                 Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.light_bulb_12005728);
                 imgview.setImageDrawable(drawable);
+                sendDataToBluetooth("0");
             }
         });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.lightBulb), (v, insets) -> {
@@ -43,6 +50,14 @@ public class LightBulb extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+    private void sendDataToBluetooth(String data) {
+        try {
+            OutputStream outputStream = bluetoothSocket.getOutputStream();
+            outputStream.write(data.getBytes());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
