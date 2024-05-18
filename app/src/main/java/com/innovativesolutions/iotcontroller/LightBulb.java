@@ -25,7 +25,6 @@ public class LightBulb extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-
         }
         Switch switch1 = findViewById(R.id.switch1);
         ImageView imgview = findViewById(R.id.imageView2);
