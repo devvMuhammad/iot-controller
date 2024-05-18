@@ -1,17 +1,11 @@
 package com.innovativesolutions.iotcontroller;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
-
+import android.view.View;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.viewpager2.widget.ViewPager2;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
+import androidx.cardview.widget.CardView;
 
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -19,6 +13,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        // access the card of each device
 
+        // for fan
+        CardView fanCard = (CardView) findViewById(R.id.fanCard);
+        fanCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FanActivity.class);
+                startActivity(intent);
+            }
+        });
+        // for rgb
+        CardView rgbCard = (CardView) findViewById(R.id.rgbCard);
+        rgbCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RgbActivity.class);
+                startActivity(intent);
+            }
+        });
+        // for garage
+        CardView garageCard = (CardView) findViewById(R.id.garageCard);
+        garageCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GarageActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
