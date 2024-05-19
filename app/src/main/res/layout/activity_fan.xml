@@ -37,6 +37,7 @@
 
         <!-- Toggle Switch -->
         <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/fanSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
@@ -55,6 +56,7 @@
 
         <!-- Control Speed Slider -->
         <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/speedSlider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -62,9 +64,9 @@
             android:stepSize="1"
             android:thumb="@drawable/custom_thumb"
             android:progressDrawable="@drawable/custom_seekbar"
-            android:progress="2"
+            android:progress="1"
             android:backgroundTint="@color/white"
-            android:foregroundTint="@color/thirdPurple"/>
+            android:splitTrack="false" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -87,7 +89,7 @@
                 android:layout_alignTop="@+id/textView4"
 
                 android:layout_toEndOf="@+id/textView4"
-                android:text="2"
+                android:text="1"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
         </RelativeLayout>
