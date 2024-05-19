@@ -5,6 +5,92 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FanActivity">
+    tools:context=".FanActivity"
+    android:background="@color/backgroundPurple">
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Bulb Image -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/baseline_ac_unit_24"
+             />
+
+        <!-- Toggle Switch Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Toggle State (ON/OFF)"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+
+        <!-- Toggle Switch -->
+        <androidx.appcompat.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            app:thumbTint="@color/white"
+            app:track="@drawable/custom_switch_off"
+            app:trackTint="@color/thirdPurple" />
+
+        <!-- Control Speed Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Control Speed (1-5)"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+
+        <!-- Control Speed Slider -->
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="5"
+            android:stepSize="1"
+            android:thumb="@drawable/custom_thumb"
+            android:progressDrawable="@drawable/custom_seekbar"
+            android:progress="2"
+            android:backgroundTint="@color/white"
+            android:foregroundTint="@color/thirdPurple"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Current Speed: "
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                />
+
+            <TextView
+                android:id="@+id/currentSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView4"
+
+                android:layout_toEndOf="@+id/textView4"
+                android:text="2"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
