@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Switch;
 
 import androidx.activity.EdgeToEdge;
@@ -18,9 +19,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class LightBulb extends AppCompatActivity {
         BluetoothSocket bluetoothSocket;
+        private AtomicInteger currentProgress = new AtomicInteger(0);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +37,10 @@ public class LightBulb extends AppCompatActivity {
         }
         Switch switch1 = findViewById(R.id.switch1);
         ImageView imgview = findViewById(R.id.imageView2);
+        SeekBar seekBar = findViewById(R.id.seekBar);
+        seekBar.setEnabled(false);
         switch1.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            seekBar.setEnabled(isChecked);
             if (isChecked) {
                 Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.light_bulb_12009589);
                 imgview.setImageDrawable(drawable);
@@ -45,6 +52,27 @@ public class LightBulb extends AppCompatActivity {
                 sendDataToBluetooth("0");
             }
         });
+            ;
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                    char progressChar = (char) (progress + 65);
+                    System.out.println(progressChar);
+                    sendDataToBluetooth(String.valueOf(progressChar));
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                    // Do nothing here
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                }
+            });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.lightBulb), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -53,14 +81,13 @@ public class LightBulb extends AppCompatActivity {
     }
     private void sendDataToBluetooth(String data) {
         try {
-            OutputStream outputStream = bluetoothSocket.getOutputStream();
-            outputStream.write(data.getBytes());
+                OutputStream outputStream = bluetoothSocket.getOutputStream();
+                outputStream.write(data.getBytes());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    @Override  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             this.finish();
             return true;
@@ -68,3 +95,4 @@ public class LightBulb extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

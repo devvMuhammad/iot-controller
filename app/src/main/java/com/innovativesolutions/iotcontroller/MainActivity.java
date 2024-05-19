@@ -44,28 +44,24 @@ public class MainActivity extends AppCompatActivity {
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED ||
-                        ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED ||
-                        ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-                        ContextCompat.checkSelfPermission(MainActivity.this, "android.permission.BLUETOOTH_SCAN") != PackageManager.PERMISSION_GRANTED ||
+                System.out.println(device);
+                if (
                         ContextCompat.checkSelfPermission(MainActivity.this, "android.permission.BLUETOOTH_CONNECT") != PackageManager.PERMISSION_GRANTED) {
-                    // If not, request them
                     ActivityCompat.requestPermissions(MainActivity.this, new String[]{
-                            android.Manifest.permission.BLUETOOTH,
-                            android.Manifest.permission.BLUETOOTH_ADMIN,
-                            Manifest.permission.ACCESS_FINE_LOCATION,
-                            "android.permission.BLUETOOTH_SCAN",
                             "android.permission.BLUETOOTH_CONNECT"
                     }, PERMISSIONS_REQUEST_CODE);
                 }
-                if (device.getName().equals("HC-05")) {
-                    BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
+                if(device != null){
+                    if(device.getName() != null){
+                    if(device.getName().equals("HC-05")){
+                        System.out.println("apna banda mil gaya");
                     try {
                         UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
                         socket = device.createRfcommSocketToServiceRecord(MY_UUID);
                         socket.connect();
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        e.printStackTrace();}
+                }
                     }
                 }
             }
