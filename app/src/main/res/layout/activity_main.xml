@@ -16,6 +16,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_height="wrap_content"
         android:paddingHorizontal="10sp"
 
 
@@ -316,6 +317,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/rgbCard"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -383,6 +385,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/fanCard"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -450,6 +453,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/garageCard"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
@@ -521,7 +525,7 @@
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <!--BOTTOM NAVBAR-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -529,9 +533,11 @@
         app:itemTextColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/scrollView1"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
 
-        app:menu="@menu/bottom_navbar_menu" />
+        app:menu="@menu/bottom_navbar_menu"
+        tools:ignore="NotSibling" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
