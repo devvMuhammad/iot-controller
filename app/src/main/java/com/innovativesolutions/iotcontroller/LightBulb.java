@@ -19,11 +19,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class LightBulb extends AppCompatActivity {
+
         BluetoothSocket bluetoothSocket;
-        private AtomicInteger currentProgress = new AtomicInteger(0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,15 +43,16 @@ public class LightBulb extends AppCompatActivity {
             if (isChecked) {
                 Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.light_bulb_12009589);
                 imgview.setImageDrawable(drawable);
-                sendDataToBluetooth("1");
+                seekBar.setProgress(100);
+                sendDataToBluetooth("U");
             } else {
                 // Set to another drawable or null when the switch is not checked
                 Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.light_bulb_12005728);
                 imgview.setImageDrawable(drawable);
-                sendDataToBluetooth("0");
+                seekBar.setProgress(0);
+                sendDataToBluetooth("A");
             }
         });
-            ;
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
 

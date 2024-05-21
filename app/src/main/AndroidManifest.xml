@@ -25,7 +25,7 @@
             android:name=".GarageActivity"
             android:exported="false" />
         <activity
-            android:name=".RgbActivity"
+            android:name=".TemperatureSensor"
             android:exported="false" />
         <activity
             android:name=".FanActivity"

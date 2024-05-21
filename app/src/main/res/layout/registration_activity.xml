@@ -25,6 +25,7 @@
         app:layout_constraintVertical_bias="0.259">
 
         <TextView
+            style="@style/MaterialAlertDialog.Material3.Title.Text"
             android:id="@+id/titleRegistration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -167,6 +168,7 @@
             app:layout_constraintVertical_bias="0.753" />
 
         <Button
+            style="@style/Widget.Material3.Button.TonalButton"
             android:id="@+id/registerBtn"
             android:layout_width="108dp"
             android:layout_height="39dp"

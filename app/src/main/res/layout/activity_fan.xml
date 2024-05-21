@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:max="5"
+            android:max="10"
             android:stepSize="1"
             android:thumb="@drawable/custom_thumb"
             android:progressDrawable="@drawable/custom_seekbar"

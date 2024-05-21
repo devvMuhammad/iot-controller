@@ -13,8 +13,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class RegistrationPage extends AppCompatActivity {
 
+
+    private FirebaseAuth auth;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -24,6 +29,7 @@ public class RegistrationPage extends AppCompatActivity {
         EditText password = findViewById(R.id.passwordEditTxt);
         EditText confirmPassword = findViewById(R.id.confirmPasswordEditTxt);
         Button registerButton = findViewById(R.id.registerBtn);
+        auth = FirebaseAuth.getInstance();
         updateButtonColor(registerButton,username,email,password,confirmPassword);
         username.addTextChangedListener(textWatcher);
         email.addTextChangedListener(textWatcher);
@@ -36,6 +42,8 @@ public class RegistrationPage extends AppCompatActivity {
             }
             else{
                 if(password.getText().toString().equals(confirmPassword.getText().toString())){
+
+                    auth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString());
                     Toast.makeText(getApplicationContext(),"Registration successful",Toast.LENGTH_SHORT).show();
                     intentNewActivity();
                 }
