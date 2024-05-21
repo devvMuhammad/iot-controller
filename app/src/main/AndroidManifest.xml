@@ -22,6 +22,9 @@
             android:theme="@style/actionBarStyle"
             />
         <activity
+            android:name=".Modules"
+            android:exported="false" />
+        <activity
             android:name=".GarageActivity"
             android:exported="false" />
         <activity
