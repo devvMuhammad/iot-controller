@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/home"  android:title="Home" android:icon="@drawable/baseline_home_24"/>
-    <item android:id="@+id/logs" android:title="Logs" android:icon="@drawable/baseline_view_timeline_24"/>
-    <item android:id="@+id/profile" android:title="Profile" android:icon="@drawable/baseline_security_24"/>
+    <item android:checked="false" android:id="@+id/home"  android:title="Home" android:icon="@drawable/baseline_home_24"/>
+    <item android:checked="false" android:id="@+id/logs" android:title="Logs" android:icon="@drawable/baseline_view_timeline_24"/>
 </menu>

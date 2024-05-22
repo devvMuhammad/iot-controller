@@ -2,10 +2,13 @@ package com.innovativesolutions.iotcontroller;
 
 import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.graphics.Insets;
@@ -25,7 +28,10 @@ public class GarageActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_garage);
         bluetoothSocket = MainActivity.socket;
-
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         SwitchCompat garageSwitch = findViewById(R.id.switchGarage);
         garageSwitch.setChecked(true);
         garageSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -65,5 +71,12 @@ public class GarageActivity extends AppCompatActivity {
     private void handleBluetoothError() {
         // Attempt to reconnect or notify the user
         System.err.println("Failed to send data. Please check the Bluetooth connection.");
+    }
+    @Override  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

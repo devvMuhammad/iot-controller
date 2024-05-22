@@ -3,10 +3,13 @@ package com.innovativesolutions.iotcontroller;
 import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.graphics.Insets;
@@ -33,7 +36,10 @@ public class TemperatureSensor extends AppCompatActivity {
         textView = findViewById(R.id.Temperature);
         bluetoothSocket = MainActivity.socket;
         handler = new Handler();  // Initialize the handler
-
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         SwitchCompat sensorSwitch = findViewById(R.id.switchTemperatureSensor);
         sensorSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -99,5 +105,12 @@ public class TemperatureSensor extends AppCompatActivity {
             bluetoothThread.interrupt();
             bluetoothThread = null;
         }
+    }
+    @Override  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

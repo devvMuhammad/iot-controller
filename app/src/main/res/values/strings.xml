@@ -23,4 +23,56 @@
     <string name="dummyText2">DEF</string>
     <string name="dummyText3">GHI</string>
     <string name="registrationMsg">Please register your account</string>
+    <string name="privacyPolicy">
+Welcome to IoT Controller. Your privacy is important to us. This policy outlines how we collect, use, and protect your information.
+\n
+Information Collection:\n
+Personal Information:\n
+We collect information you provide, such as:\n
+\n
+Name\n
+Email address\n
+Non-Personal Information\n
+We collect usage data, including:\n
+\n
+Device information:\n
+IP address\n
+Pages viewed\n
+Information Use\n
+We use your information to:\n
+\n
+Provide and improve services\n
+Personalize your experience\n
+Communicate with you\n
+Analyze usage\n
+Information Sharing\n
+We only share your information:\n
+\n
+With your consent\n
+With service providers\n
+For legal reasons\n
+In business transfers\n
+Data Security\n
+We protect your data but cannot guarantee complete security.\n
+\n
+Your Choices\n
+You can:\n
+\n
+Update your information\n
+Delete your account\n
+Opt-out of marketing\n
+Contact us at innovativesolutions@gmail.com for these requests.\n
+\n
+\n
+Policy Changes:\n
+We may update this policy. Changes will be posted in the app.\n
+\n
+Contact Us\n
+Questions? Contact us at:\n
+\n
+innovativesolutions.com\n
+innovativesolutions@gmailcom\n
++92 1111111111\n
+\n
+Thank you for using IoT Controller.</string>
 </resources>

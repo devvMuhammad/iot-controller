@@ -126,7 +126,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
-        android:layout_height="595dp"
+        android:layout_height="502dp"
         android:layout_marginTop="10dp"
         android:paddingLeft="10sp"
         android:paddingRight="10sp"
@@ -146,7 +146,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
             android:text="Detailed Description"
             android:textColor="@color/white"
@@ -159,14 +159,12 @@
         <ScrollView
             android:id="@+id/scrollView1"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="400dp"
             android:scrollbarAlwaysDrawVerticalTrack="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
 
             <GridLayout
                 android:id="@+id/gridLayout1"
@@ -192,7 +190,7 @@
                     android:layout_marginBottom="10dp"
                     android:backgroundTint="@color/thirdPurple"
                     android:clickable="true"
-                    android:onClick="onBulbClick"
+
                     app:cardCornerRadius="20dp"
 
                     >
@@ -290,7 +288,7 @@
                     android:layout_marginBottom="10dp"
                     android:backgroundTint="@color/thirdPurple"
                     android:clickable="true"
-                    android:onClick="onBulbClick"
+
                     app:cardCornerRadius="20dp"
 
                     >
@@ -388,7 +386,7 @@
                     android:layout_marginBottom="10dp"
                     android:backgroundTint="@color/thirdPurple"
                     android:clickable="true"
-                    android:onClick="onBulbClick"
+
                     app:cardCornerRadius="20dp"
 
                     >
@@ -487,7 +485,7 @@
                     android:layout_marginBottom="10dp"
                     android:backgroundTint="@color/thirdPurple"
                     android:clickable="true"
-                    android:onClick="onBulbClick"
+
                     app:cardCornerRadius="20dp"
 
                     >
@@ -581,17 +579,17 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     <!--BOTTOM NAVBAR-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/backgroundPurple"
-        app:itemTextColor="@color/white"
+        app:itemBackground="@color/backgroundPurple"
         app:layout_constraintTop_toBottomOf="@id/scrollView1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-
         app:menu="@menu/bottom_navbar_menu"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
         tools:ignore="NotSibling" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

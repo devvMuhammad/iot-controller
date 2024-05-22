@@ -13,6 +13,9 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -25,6 +28,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.io.IOException;
 import java.util.UUID;
 
@@ -33,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST_CODE = 2;
     private static final int BLUETOOTH_CONNECT_REQUEST_CODE = 3;
     public static BluetoothSocket socket;
+    private ProgressBar progressBar;
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -53,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
                         UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
                         socket = device.createRfcommSocketToServiceRecord(MY_UUID);
                         socket.connect();
+                        runOnUiThread(() -> progressBar.setVisibility(View.GONE));
                     } catch (IOException e) {
                         e.printStackTrace();}
+                        runOnUiThread(() -> progressBar.setVisibility(View.GONE));
                 }
                     }
                 }
@@ -63,56 +72,83 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         // access the card of each device
-
+        // code for changing the active based on the selected one in the bottom navbar
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
+        progressBar = findViewById(R.id.progressBar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            if(item.getItemId() == R.id.logs){
+                Intent intent1 = new Intent(MainActivity.this, Modules.class);
+                startActivity(intent1);
+                finish();
+            }
+            return true;
+        });
+            // for settings click
+            ImageView settingsImageView = findViewById(R.id.settings);
+            settingsImageView.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, InfoPage.class);
+                startActivity(intent);
+            });
         // for fan
         CardView fanCard = (CardView) findViewById(R.id.fanCard);
-        fanCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FanActivity.class);
-                startActivity(intent);
-            }
-        });
+            fanCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(socket != null) {
+                        Intent intent = new Intent(MainActivity.this, FanActivity.class);
+                        startActivity(intent);
+                    }else{}
+                }
+            });
         // for rgb
         CardView rgbCard = (CardView) findViewById(R.id.rgbCard);
-        rgbCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TemperatureSensor.class);
-                startActivity(intent);
-            }
-        });
+            rgbCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (socket != null) {
+                        Intent intent = new Intent(MainActivity.this, TemperatureSensor.class);
+                        startActivity(intent);
+                    }else{}
+                }
+            });
         // for garage
         CardView garageCard = (CardView) findViewById(R.id.garageCard);
-        garageCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GarageActivity.class);
-                startActivity(intent);
-            }
-        });
+            garageCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (socket != null) {
+                        Intent intent = new Intent(MainActivity.this, GarageActivity.class);
+                        startActivity(intent);
+                    }else{}
+                }
+            });
+
         Button button = (Button) findViewById(R.id.connectButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 bluetoothEnableRequest();
                 BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
                 if (bluetoothAdapter != null && bluetoothAdapter.isEnabled()) {
-                    if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED ||
-                            ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED ||
-                            ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED ||
+                            ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED ||
+                            ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                             ContextCompat.checkSelfPermission(MainActivity.this, "android.permission.BLUETOOTH_SCAN") != PackageManager.PERMISSION_GRANTED ||
                             ContextCompat.checkSelfPermission(MainActivity.this, "android.permission.BLUETOOTH_CONNECT") != PackageManager.PERMISSION_GRANTED) {
                         // If not, request them
                         ActivityCompat.requestPermissions(MainActivity.this, new String[]{
-                                android.Manifest.permission.BLUETOOTH,
-                                android.Manifest.permission.BLUETOOTH_ADMIN,
+                                Manifest.permission.BLUETOOTH,
+                                Manifest.permission.BLUETOOTH_ADMIN,
                                 Manifest.permission.ACCESS_FINE_LOCATION,
                                 "android.permission.BLUETOOTH_SCAN",
                                 "android.permission.BLUETOOTH_CONNECT"
@@ -125,13 +161,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         CardView bulbCard = (CardView) findViewById(R.id.lightBulb);
-        bulbCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LightBulb.class);
-                startActivity(intent);
-            }
-        });
+
+            bulbCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(socket != null) {
+                        Intent intent = new Intent(MainActivity.this, LightBulb.class);
+                        startActivity(intent);
+                    }
+                    else{}
+                }
+            });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -194,4 +234,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 }
