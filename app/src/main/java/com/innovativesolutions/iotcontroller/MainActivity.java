@@ -1,5 +1,4 @@
 package com.innovativesolutions.iotcontroller;
-
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -17,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,13 +25,10 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.io.IOException;
 import java.util.UUID;
-
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int PERMISSIONS_REQUEST_CODE = 2;
@@ -60,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                         UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
                         socket = device.createRfcommSocketToServiceRecord(MY_UUID);
                         socket.connect();
+                        Toast.makeText(MainActivity.this,"Module connected",Toast.LENGTH_SHORT).show();
                         runOnUiThread(() -> progressBar.setVisibility(View.GONE));
                     } catch (IOException e) {
                         e.printStackTrace();}
@@ -106,7 +102,9 @@ public class MainActivity extends AppCompatActivity {
                     if(socket != null) {
                         Intent intent = new Intent(MainActivity.this, FanActivity.class);
                         startActivity(intent);
-                    }else{}
+                    }else{
+                        Toast.makeText(MainActivity.this,"Module not connected", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         // for rgb
@@ -117,7 +115,9 @@ public class MainActivity extends AppCompatActivity {
                     if (socket != null) {
                         Intent intent = new Intent(MainActivity.this, TemperatureSensor.class);
                         startActivity(intent);
-                    }else{}
+                    }else{
+                        Toast.makeText(MainActivity.this, "Bluetooth not connected", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         // for garage
@@ -128,7 +128,9 @@ public class MainActivity extends AppCompatActivity {
                     if (socket != null) {
                         Intent intent = new Intent(MainActivity.this, GarageActivity.class);
                         startActivity(intent);
-                    }else{}
+                    }else{
+                        Toast.makeText(MainActivity.this, "Bluetooth not connected", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 
@@ -169,7 +171,9 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, LightBulb.class);
                         startActivity(intent);
                     }
-                    else{}
+                    else{
+                        Toast.makeText(MainActivity.this, "Bluetooth not connected", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

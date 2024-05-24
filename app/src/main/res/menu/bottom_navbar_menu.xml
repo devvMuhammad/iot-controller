@@ -2,5 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:checked="false" android:id="@+id/home"  android:title="Home" android:icon="@drawable/baseline_home_24"/>
-    <item android:checked="false" android:id="@+id/logs" android:title="Logs" android:icon="@drawable/baseline_view_timeline_24"/>
+    <item android:checked="false" android:id="@+id/logs" android:title="Modules" android:icon="@drawable/baseline_view_timeline_24"/>
 </menu>
