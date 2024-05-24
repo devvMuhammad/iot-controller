@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "923407252310",
+    "project_id": "iot-controller-b723d",
+    "storage_bucket": "iot-controller-b723d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923407252310:android:1707a64fbf3664a2c174f7",
+        "android_client_info": {
+          "package_name": "com.innovativesolutions.iotcontroller"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZXXQAOuNfPTzTIYRibcBlrn-fYBR36XY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
